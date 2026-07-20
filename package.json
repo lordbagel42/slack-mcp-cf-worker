@@ -1,19 +1,24 @@
 {
   "name": "slack-mcp-cf-worker",
-  "version": "1.0.0",
-  "description": "Slack MCP Bridge on Cloudflare Workers",
+  "version": "2.0.0",
+  "description": "Generic AI-agent MCP server for Slack (read + send), deployable to Cloudflare Workers.",
   "main": "src/index.ts",
   "type": "module",
   "scripts": {
     "deploy": "wrangler deploy",
     "dev": "wrangler dev",
-    "start": "wrangler dev"
+    "start": "wrangler dev",
+    "typecheck": "tsc --noEmit",
+    "cf-typegen": "wrangler types"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.0.0"
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "agents": "^0.17.4",
+    "zod": "^4.0.0"
   },
   "devDependencies": {
-    "wrangler": "^3.0.0",
-    "typescript": "^5.0.0"
+    "@cloudflare/workers-types": "^4.20250109.0",
+    "typescript": "^5.7.0",
+    "wrangler": "^4.0.0"
   }
 }

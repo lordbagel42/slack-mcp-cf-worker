@@ -1,0 +1,12 @@
+# Copy to `.dev.vars` for local `wrangler dev`. Never commit the real file.
+# In production, set these with: wrangler secret put <NAME>
+
+# Slack bot token (xoxb-...). Required.
+SLACK_BOT_TOKEN=xoxb-your-bot-token
+
+# Optional: Slack user token (xoxp-...). Only needed for slack_search_messages.
+SLACK_USER_TOKEN=
+
+# Optional: shared secret agents must present to use this server.
+# This is the API key you paste into Poke / Claude when adding the integration.
+MCP_AUTH_TOKEN=change-me-to-a-long-random-string

@@ -1,14 +1,22 @@
 name = "slack-mcp-cf-worker"
 main = "src/index.ts"
-compatibility_date = "2024-04-03"
+compatibility_date = "2025-01-09"
+compatibility_flags = ["nodejs_compat"]
 
+# Durable Object that backs the MCP agent (holds the cached Slack client /
+# channel lookup table between tool calls).
 [[durable_objects.bindings]]
-name = "SLACK_BRIDGE"
-class_name = "SlackMcpBridge"
+name = "MCP_OBJECT"
+class_name = "SlackAgent"
 
 [[migrations]]
 tag = "v1"
-new_classes = ["SlackMcpBridge"]
+new_sqlite_classes = ["SlackAgent"]
 
 [observability]
 enabled = true
+
+# Non-secret defaults can go here. Secrets (SLACK_BOT_TOKEN, SLACK_USER_TOKEN,
+# MCP_AUTH_TOKEN) must be set with `wrangler secret put <NAME>` — do NOT commit them.
+# [vars]
+# EXAMPLE_VAR = "value"

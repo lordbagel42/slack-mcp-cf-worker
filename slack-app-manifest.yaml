@@ -1,0 +1,38 @@
+# Slack app manifest for the Slack Agent MCP server.
+#
+# Create the app: https://api.slack.com/apps -> "Create New App" -> "From a manifest",
+# paste this, then Install to your workspace. Copy the "Bot User OAuth Token" (xoxb-...)
+# into SLACK_BOT_TOKEN.
+#
+# If you also want slack_search_messages, add the user scope below, reinstall, and copy
+# the "User OAuth Token" (xoxp-...) into SLACK_USER_TOKEN.
+display_information:
+  name: Agent MCP Bridge
+  description: Lets AI agents read and send Slack messages via MCP.
+  background_color: "#4A154B"
+features:
+  bot_user:
+    display_name: agent-mcp
+    always_online: true
+oauth_config:
+  scopes:
+    bot:
+      - channels:read # list public channels
+      - channels:history # read public channel messages
+      - groups:read # list private channels
+      - groups:history # read private channel messages
+      - im:read # list DMs
+      - im:history # read DMs
+      - mpim:read # list group DMs
+      - mpim:history # read group DMs
+      - chat:write # send messages
+      - reactions:write # add reactions
+      - users:read # list users / resolve names
+      - users:read.email # include email in profiles (optional)
+    # Uncomment to enable slack_search_messages (requires a user token, xoxp-):
+    # user:
+    #   - search:read
+settings:
+  org_deploy_enabled: false
+  socket_mode_enabled: false
+  token_rotation_enabled: false
